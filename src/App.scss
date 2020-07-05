@@ -1,0 +1,25 @@
+@import "~semantic-ui-css/semantic.min.css";
+
+.App {
+  text-align: center;
+}
+
+.ui.statistic.action {
+  div.value {
+    font-size: 10rem !important;
+  }
+  div.label {
+    font-size: 3rem !important;
+    margin: 10px auto 10px;
+  }
+}
+.ui.statistic + .ui.statistic.round {
+  display: block;
+  margin: 30px auto 30px;
+}
+@media (max-width: 768px) {
+  div.steps .step:not(.active) {
+    display: none;
+  }
+}
+

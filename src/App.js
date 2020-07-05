@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import './App.scss';
+import StepComponent from "./components/stepComponent";
+import RoundConfigComponent from "./components/roundConfigComponent";
+import FightComponent from "./components/fightComponent";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [config, setConfig] = useState(null);
+
+    const getFightConfig = (configs) => setConfig(configs);
+
+    const resetConfig = () => setConfig(null);
+
+    return (
+        <div className="App">
+            <StepComponent step={config ? 2 : 1}/>
+            {!config && <RoundConfigComponent onConfig={getFightConfig}/>}
+            {config && <FightComponent config={config} onComplete={resetConfig}/>}
+        </div>
+    );
 }
 
 export default App;
