@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Boxing Timer",
+  "name": "A simple timer for boxing rounds",
   "icons": [
     {
       "src": "favicon.ico",
