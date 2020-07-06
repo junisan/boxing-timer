@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+before_install:
+  - curl https://dl.min.io/client/mc/release/linux-amd64/mc --output /tmp/mc
+  - chmod +x /tmp/mc
+  - /tmp/mc config host add minio $MC_HOST $MC_ACCESS $MC_PASS --api S3v4
+install:
+  - npm install
+script:
+  - npm run build
+before_deploy:
+  - tar -zcvf "boxing-$TRAVIS_BUILD_NUMBER.tar.gz" build/
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+    /tmp/mc cp "boxing-$TRAVIS_BUILD_NUMBER.tar.gz" minio/$MC_ACCESS
+  branch: master
